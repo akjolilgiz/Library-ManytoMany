@@ -4,6 +4,20 @@
 @using Library.Models;
 
 <div class="container">
+
+<div class="row">
+    <div class="col-md-4">
+      <h2>Add A book</h2>
+      <form class='form-group' action="/addBook" method="post">
+        <label for='title'>Name:</label>
+        <input title='title' type='text' required><br>
+
+        <button type='submit' class='btn btn-success'>Add</button>
+      </form>
+    </div>
+</div>
+
+
 <h1>Catalog</h1>
 
 <div class="col-md-8">

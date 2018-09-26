@@ -14,6 +14,14 @@ namespace Library.Controllers
       return View();
     }
 
+    [HttpPost("/addBook")]
+    public ActionResult AddBook(string title)
+    {
+      Book newBook = new Book(title);
+      newBook.Save();
+      return RedirectToAction("Index");
+    }
+
 
     // [HttpPost("/AddBook")]
     // public ActionResult AddBook(string title)
