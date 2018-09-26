@@ -13,12 +13,43 @@ namespace Library.Controllers
     {
       return View();
     }
+    //
+    // [HttpPost("/addBook")]
+    // public ActionResult AddBook(string title)
+    // {
+    //   Book newBook = new Book(title);
+    //   newBook.Save();
+    //   return RedirectToAction("Index");
+    // }
 
-    [HttpPost("/addBook")]
-    public ActionResult AddBook(string title)
+    [HttpPost("/addCatalog")]
+    public ActionResult AddCatalog()
     {
-      Book newBook = new Book(title);
+      Book newBook = new Book(Request.Form["title"]);
       newBook.Save();
+      Author newAuthor = new Author(Request.Form["name"]);
+      newAuthor.Save();
+      Catalog newCatalog = new Catalog(newAuthor.Id, newBook.Id);
+      newCatalog.Save();
+      return RedirectToAction("Index");
+    }
+
+    [HttpGet("/{id}/addAuthor")]
+    public ActionResult AddAuthor()
+    {
+      return View();
+    }
+
+
+    [HttpPost("/{id}/details")]
+    public ActionResult AddNewAuthor(int id)
+    {
+      Book foundBook = Book.Find(id);
+      Console.WriteLine(foundBook.Title);
+      Author newAuthor = new Author(Request.Form["newAuthor"]);
+      newAuthor.Save();
+      Catalog newCatalog = new Catalog(newAuthor.Id, foundBook.Id);
+      newCatalog.Save();
       return RedirectToAction("Index");
     }
 

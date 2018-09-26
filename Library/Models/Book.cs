@@ -34,6 +34,7 @@ namespace Library.Models
       }
     }
 
+
     public static Book Find(int id)
     {
       MySqlConnection conn = DB.Connection();
@@ -88,19 +89,42 @@ namespace Library.Models
     }
 
     public static void DeleteAll()
-{
-  MySqlConnection conn = DB.Connection();
-  conn.Open();
-  var cmd = conn.CreateCommand() as MySqlCommand;
-  cmd.CommandText = @"DELETE FROM books;";
-  cmd.ExecuteNonQuery();
-  conn.Close();
-  if (conn != null)
-  {
-    conn.Dispose();
-  }
-}
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"DELETE FROM books;";
+      cmd.ExecuteNonQuery();
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
+    public void AddAuthor(Author newAuthor)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"INSERT INTO catalog (author_id, book_id) VALUES (@AuthorId, @BookId);";
 
+      MySqlParameter book_id = new MySqlParameter();
+      book_id.ParameterName = "@BookId";
+      book_id.Value = Id;
+      cmd.Parameters.Add(book_id);
+
+      MySqlParameter Author_id = new MySqlParameter();
+      Author_id.ParameterName = "@AuthorId";
+      Author_id.Value = newAuthor.Id;
+      cmd.Parameters.Add(Author_id);
+
+      cmd.ExecuteNonQuery();
+      conn.Close();
+      if (conn != null)
+      {
+          conn.Dispose();
+      }
+    }
 
   }
 }
