@@ -1,0 +1,33 @@
+@{
+  Layout = "_Layout";
+}
+@using Library.Models;
+
+<div class="container">
+<h1>Catalog</h1>
+
+<div class="col-md-8">
+  <h2>Catalog</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Book</th>
+        <th scope="col">Author</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach(Catalog entry in Catalog.GetAll())
+      {
+        <tr>
+          <td>@Book.Find(@entry.Book_Id).Title</td>
+          <td>@Author.Find(@entry.Author_Id).Name</td>
+        </tr>
+      }
+      <tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+</div>

@@ -10955,22 +10955,22 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/Guest/Desktop/CSharpProjectBuilder/Library.Solution/Library.Tests/Library.Tests.csproj",
+      "projectUniqueName": "/Users/Guest/Desktop/Library.Solution/Library.Tests/Library.Tests.csproj",
       "projectName": "Library.Tests",
-      "projectPath": "/Users/Guest/Desktop/CSharpProjectBuilder/Library.Solution/Library.Tests/Library.Tests.csproj",
-      "outputPath": "/Users/Guest/Desktop/CSharpProjectBuilder/Library.Solution/Library.Tests/obj/",
+      "projectPath": "/Users/Guest/Desktop/Library.Solution/Library.Tests/Library.Tests.csproj",
+      "outputPath": "/Users/Guest/Desktop/Library.Solution/Library.Tests/obj/",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [
         "netcoreapp1.1"
       ],
       "files": {
-        "lib/netcoreapp1.1/Library.Tests.dll": "/Users/Guest/Desktop/CSharpProjectBuilder/Library.Solution/Library.Tests/bin/placeholder/netcoreapp1.1/Library.Tests.dll"
+        "lib/netcoreapp1.1/Library.Tests.dll": "/Users/Guest/Desktop/Library.Solution/Library.Tests/bin/placeholder/netcoreapp1.1/Library.Tests.dll"
       },
       "frameworks": {
         "netcoreapp1.1": {
           "projectReferences": {
-            "/Users/Guest/Desktop/CSharpProjectBuilder/Library.Solution/Library/Library.csproj": {
-              "projectPath": "/Users/Guest/Desktop/CSharpProjectBuilder/Library.Solution/Library/Library.csproj"
+            "/Users/Guest/Desktop/Library.Solution/Library/Library.csproj": {
+              "projectPath": "/Users/Guest/Desktop/Library.Solution/Library/Library.csproj"
             }
           }
         }
