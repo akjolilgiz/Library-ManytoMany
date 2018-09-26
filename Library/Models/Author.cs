@@ -101,6 +101,63 @@ namespace Library.Models
       }
     }
 
+      public void AddBook(Book newBook)
+      {
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+        var cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"INSERT INTO catalog (author_id, book_id) VALUES (@authorId, @bookId);";
+
+        MySqlParameter book_id = new MySqlParameter();
+        book_id.ParameterName = "@bookId";
+        book_id.Value = newBook.Id;
+        cmd.Parameters.Add(book_id);
+
+        MySqlParameter author_id = new MySqlParameter();
+        author_id.ParameterName = "@authorId";
+        author_id.Value = Id;
+        cmd.Parameters.Add(author_id);
+
+        cmd.ExecuteNonQuery();
+        conn.Close();
+        if (conn != null)
+        {
+            conn.Dispose();
+        }
+      }
+      public List<Book> GetBooks()
+       {
+           MySqlConnection conn = DB.Connection();
+           conn.Open();
+           MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+           cmd.CommandText = @"SELECT books.* FROM authors
+               JOIN catalog ON (authors.id = catalog.author_id)
+               JOIN books ON (catalog.book_id = books.id)
+               WHERE authors.id = @authorId;";
+
+           MySqlParameter authorsParameter = new MySqlParameter();
+           authorsParameter.ParameterName = "@authorId";
+           authorsParameter.Value = Id;
+           cmd.Parameters.Add(authorsParameter);
+
+           MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+           List<Book> books = new List<Book>{};
+
+           while(rdr.Read())
+           {
+             int bookId = rdr.GetInt32(0);
+             string bookTitle = rdr.GetString(1);
+             Book newBook = new Book(bookTitle, bookId);
+             books.Add(newBook);
+           }
+           conn.Close();
+           if (conn != null)
+           {
+               conn.Dispose();
+           }
+           return books;
+       }
+
 
   }
 }

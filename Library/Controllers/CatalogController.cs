@@ -35,13 +35,14 @@ namespace Library.Controllers
     }
 
     [HttpGet("/{id}/addAuthor")]
-    public ActionResult AddAuthor()
+    public ActionResult AddAuthor(int id)
     {
-      return View();
+      Book foundBook = Book.Find(id);
+      return View(foundBook);
     }
 
 
-    [HttpPost("/{id}/details")]
+    [HttpPost("/authors/{id}/details")]
     public ActionResult AddNewAuthor(int id)
     {
       Book foundBook = Book.Find(id);
