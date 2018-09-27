@@ -1,0 +1,15 @@
+<h1>Searched Books</h1>
+
+
+
+<thead>
+  <tr>
+    <th scope="col">Results</th>
+  </tr>
+  @foreach(var books in @Model)
+  {
+    <tr>
+      <td><li><a href="/books/@books.Id/details">@books.Title</a></li></td>
+    </tr>
+  }
+</thead>

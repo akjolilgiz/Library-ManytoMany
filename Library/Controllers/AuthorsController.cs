@@ -18,10 +18,24 @@ namespace Library.Controllers
     [HttpGet("/authors/{id}/details")]
     public ActionResult Details(int id)
     {
-      Author newAuthor = Author.Find(id);
-      List<Book> allBooks = newAuthor.GetBooks();
-      return View(allBooks);
+      Dictionary<string, object> model = new Dictionary<string, object> {};
+      Author foundAuthor = Author.Find(id);
+      List<Book> allAuthorBooks = foundAuthor.GetBooks();
+      model.Add("foundAuthor", foundAuthor);
+      model.Add("allAuthorBooks", allAuthorBooks);
+      return View(model);
     }
 
+    [HttpPost("/authors/{id}/details")]
+    public ActionResult AddNewBook(int id)
+    {
+      Author foundAuthor = Author.Find(id);
+      Console.WriteLine(foundAuthor.Name);
+      Book newBook = new Book(Request.Form["newBook"]);
+      newBook.Save();
+      Catalog newCatalog = new Catalog(foundAuthor.Id, newBook.Id);
+      newCatalog.Save();
+      return RedirectToAction("Details");
+    }
   }
 }

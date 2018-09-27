@@ -1,0 +1,30 @@
+    @{
+      Layout = "_Layout";
+    }
+    @using Library.Models;
+
+      <h2>Books</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Book by Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach(var book in Model)
+          {
+            <tr>
+              <td><a href = "books/@book.Id/details">@book.Title</a></td>
+            </tr>
+          }
+          <tr>
+          </tbody>
+        </table>
+
+  <form class='form-group' action="/books/search" method="post">
+    <label for='searchedBook'>Book title</label>
+    <input name='searchedBook' type='text' required><br>
+
+    <button type='submit' class='btn btn-success'>Search</button>
+  </form>
+  <a href ="/catalog">Back to catalog</a>

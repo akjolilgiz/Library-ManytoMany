@@ -1,0 +1,40 @@
+@{
+  Layout = "_Layout";
+}
+@using Library.Models;
+
+<div class="container">
+<h2>Authors</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Authors of @Model["newBook"].Title</th>
+    </tr>
+    @foreach(var author in @Model["allAuthors"])
+    {
+      <tr>
+        <td><li>@author.Name</li></td>
+      </tr>
+    }
+  </thead>
+  <tbody>
+
+    <tr>
+    </tbody>
+  </table>
+</br>
+</br>
+</br>
+</br>
+<div class="row">
+    <div class="col-md-4">
+      <h4>Add another Author to @Model["newBook"].Title</h4>
+      <form class='form-group' action="/books/@Model["newBook"].Id/details" method="post">
+        <label for='newAuthor'>Author's Name</label>
+        <input name='newAuthor' type='text' required><br>
+
+        <button type='submit' class='btn btn-success'>Add</button>
+      </form>
+    </div>
+</div>
+<a href="/catalog">Back to Catalog</a>

@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Library.Models;
 using System;
+using System.Collections.Generic;
 
 namespace Library.Tests
 {
@@ -34,6 +35,23 @@ namespace Library.Tests
       string result = Book.Find(newBook.Id).Title;
 
       Assert.AreEqual("Lord of the Rings", result);
+    }
+    [TestMethod]
+    public void SearchForBook_True()
+    {
+      Book newBook = new Book("Bottle");
+      newBook.Save();
+
+      List<Book> searchList = Book.SearchInBookTable("Bottle");
+      Book searchBook = searchList[0];
+      string bookTitle = searchBook.Title;
+
+
+
+      // string result = Book.SearchInBookTable("Bottle")[0].Title;
+
+
+      Assert.AreEqual("Bottle", bookTitle);
     }
 
   }
